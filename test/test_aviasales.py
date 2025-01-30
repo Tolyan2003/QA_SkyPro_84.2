@@ -91,6 +91,11 @@ class TestAviaSales:
                 attachment_type=allure.attachment_type.PNG
             )
 
+        with allure.step("Вводим данные для покупки билетов - негативный тест"):
+            doc_lk.enter_first_name('')
+            doc_lk.enter_last_name('')
+            doc_lk.enter_document_number('')
+
         with allure.step("Вводим данные для покупки билетов"):
             doc_lk.enter_first_name(first_name)
             doc_lk.enter_last_name(last_name)
@@ -109,19 +114,6 @@ class TestAviaSales:
                 name="screenshot",
                 attachment_type=allure.attachment_type.PNG
         )
-
-        with allure.step("Вводим данные для покупки билетов - негативный тест"):
-            doc_lk.enter_first_name('Ivan')
-            doc_lk.enter_last_name('Petrov')
-            doc_lk.enter_birth_date(birth_date)
-            doc_lk.enter_document_number('AAAA_BBBBBB')
-
-        with allure.step("Делаем скриншот страницы"):
-            allure.attach(
-                browser.get_screenshot_as_png(),
-                name="screenshot",
-                attachment_type=allure.attachment_type.PNG
-            )
 
         with allure.step("Нажимаем радиокнопку 'М'"):
             doc_lk.radio_button_male()

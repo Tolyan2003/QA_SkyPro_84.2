@@ -21,8 +21,9 @@ class LK_Page:
 
     @allure.step("Ввести имя: {f_name}")
     def enter_first_name(self, f_name):
-        first_name_input = self.__driver.find_element(By.XPATH, '//*[@id="first-name-0"]')
-        first_name_input.clear()
+        first_name_input = WebDriverWait(self.__driver, 10).until(
+                EC.element_to_be_clickable((By.XPATH, '//*[@id="first-name-0"]')))
+        first_name_input.click()
         first_name_input.send_keys(f_name)
         allure.attach(
             self.__driver.get_screenshot_as_png(),
@@ -33,8 +34,9 @@ class LK_Page:
 
     @allure.step("Ввести фамилию: {l_name}")
     def enter_last_name(self, l_name):
-        last_name_input = self.__driver.find_element(By.XPATH, '//*[@id="last-name-0"]')
-        last_name_input.clear()
+        last_name_input = WebDriverWait(self.__driver, 10).until(
+                EC.element_to_be_clickable((By.XPATH, '//*[@id="last-name-0"]')))
+        last_name_input.click()
         last_name_input.send_keys(l_name)
         allure.attach(
             self.__driver.get_screenshot_as_png(),
@@ -45,8 +47,9 @@ class LK_Page:
 
     @allure.step("Ввести дату рождения: {date}")
     def enter_birth_date(self, date):
-        birth_date_input = self.__driver.find_element(By.ID, "birth-date-0")
-        birth_date_input.clear()
+        birth_date_input = WebDriverWait(self.__driver, 10).until(
+                EC.element_to_be_clickable((By.ID, "birth-date-0")))
+        birth_date_input.click()
         date_str = f"{date.day:02d}.{date.month:02d}.{date.year}"
         birth_date_input.send_keys(date_str)
         allure.attach(
@@ -58,8 +61,9 @@ class LK_Page:
 
     @allure.step("Ввести номер документа: {document_number}")
     def enter_document_number(self, document_number):
-        document_number_input = self.__driver.find_element(By.ID, "document-number-0")
-        document_number_input.clear()
+        document_number_input = WebDriverWait(self.__driver, 10).until(
+                EC.element_to_be_clickable((By.ID, "document-number-0")))
+        document_number_input.click()
         document_number_input.send_keys(document_number)
         allure.attach(
             self.__driver.get_screenshot_as_png(),
